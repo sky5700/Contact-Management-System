@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normaluser/baseuser::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>User Profile</title>
+    <!-- Add Bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy3u9vHs5GI9L3w3mxnDQla3Fg93hpdznr"
+        crossorigin="anonymous">
+    <!-- Add your additional head elements here (e.g., stylesheets, scripts) -->
+</head>
+
+<body class="bg-light">
+    <section>
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-body text-center">
+
+                    <!-- Profile Picture -->
+                    <div class="container text-center mb-4">
+                        <img class="rounded-circle img-thumbnail" style="height: 200px; width: 200px;"
+                            src="/img/userprofilepic.png" alt="Profile Photo" />
+                    </div>
+
+                    <!-- User Name -->
+                    <h1 class="text-center">
+                        <span class="font-weight-bold" th:text="${user.name}"></span>
+                    </h1>
+
+                    <!-- User ID -->
+                    <table class="table table-bordered text-center">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#ID</th>
+                                <th scope="col">
+                                    <span th:text="'CM2023'+${user.userId}"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Email -->
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td><span th:text="${user.email}"></span></td>
+                            </tr>
+                            
+                             <!-- Phone -->
+                            <tr>
+                                <th scope="row">Phone</th>
+                                <td><span th:text="${user.phone}"></span></td>
+                            </tr>
+
+                            <!-- Status -->
+                            <tr>
+                                <th scope="row">Status</th>
+                                <td>
+									<span th:if="${user.isEnable}">Active</span>
+									 <span th:unless="${user.isEnable}">Locked</span>
+                                </td>
+                            </tr>
+
+                            <!-- Description -->
+                            <tr>
+                                <th scope="row">Description</th>
+                                <td><span th:utext="${user.about}"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Add your additional body elements here -->
+
+    <!-- Add Bootstrap and other scripts at the end of the body for improved performance -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"
+        integrity="sha384-MSUGaFNC/X8PrAjB6HgQ5QhBJ5qkccFV3ev2zGAL+Pxl/Jzy8lM5/lnfoWrGyLb8"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+Wy3u9vHs5GI9L3w3mxnDQla3Fg93hpdznr"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

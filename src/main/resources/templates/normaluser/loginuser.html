@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${title}">User Login Page</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyC8g/uUqqn7U5Z9+iJmMgSnGby5p6IZF9" crossorigin="anonymous">
+</head>
+<body>
+<section class="vh-100" style="background-color: #9A616D;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+			                 <!--  Added - Image -->
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            
+            
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+				          
+				           <!-- Printing session msg if hasError -->
+			  <div th:if="${session.message}" th:classappend="${'alert '+session.message.type}" class="alert " role="alert">
+				      <span th:text="${session.message.content}"></span>
+				                                    
+				           <!-- removing session -->
+			         <th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+			  </div> 
+				  
+                                <!-- Entire Form -->
+                <form id="login-form" class="form" th:action="@{/user/processlogin}" action="#" method="post">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Welcome</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                  
+                            <!-- Email -->
+                  <div class="form-outline mb-4">
+                    <input 
+                     type="email" 
+                     id="form2Example17" 
+                     name="email"
+                     class="form-control form-control-lg"
+                     th:value="${oldData}"
+                     th:style="${oldData != null ? 'color: red;' : ''}" 
+                     required/>
+                    <label class="form-label" for="form2Example17">Email address</label>
+                  </div>
+                   
+                              <!-- Password -->
+                  <div class="form-outline mb-4">
+                    <input 
+                     type="password" 
+                     id="form2Example27" 
+                     name="password"
+                     class="form-control form-control-lg" 
+                     required/>
+                    <label class="form-label" for="form2Example27">Password</label>
+                  </div>
+                                  
+                               <!-- Button -->
+                  <button class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+
+                               <!-- Forget Password Link -->
+                  <a class="small text-muted" th:href="@{/verify-account}" href="#!">Forgot password?</a>
+                                  
+                               <!-- Registration link    -->             
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
+                      th:href="@{/check-email}" style="color: #393f81;">Register here</a></p>
+                      
+                              <!-- Commented Links are for Terms & COndition, If req later will be added  -->
+                 <!--  <a href="#!" class="small text-muted">Terms of use.</a>
+                  <a href="#!" class="small text-muted">Privacy policy</a> -->
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bootstrap JS and Popper.js (for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-Yy3y7qeGJj2df7F6G8iaPLIXL/4VO6IHxhFUrgOABaf5e5W8BSDEcUn5iueJ9dM1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyC8g/uUqqn7U5Z9+iJmMgSnGby5p6IZF9" crossorigin="anonymous"></script>
+
+</body>
+</html>

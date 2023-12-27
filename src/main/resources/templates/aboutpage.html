@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>Home page</title>
+</head>
+<body>
+	
+	<section class="about-section text-center">
+    <div class="about-container container">
+        <h1 class="about-title">About Us</h1>
+        <div class="container">
+			<p class="about-content">Smart Contact Manager is a rapidly growing cloud storage service founded in 2023.</p>
+            <p class="about-content"> We store customer's contacts in a smarter way, providing access to the information at any time and from anywhere.</p>
+
+			
+			
+		</div>
+        <ul class="about-contact-info">
+            <li><span class="about-icon">&#x260E;</span> Phone: 996655887744</li>
+            <li><span class="about-icon">&#x1F4E7;</span> Email: <a href="mailto:abc@scm.com">abc@scm.com</a></li>
+            <li><span class="about-icon">&#x2709;</span> Business Email: <a href="mailto:info@scm.com">info@scm.com</a></li>
+        </ul>
+
+        <a href="#" th:href="@{/check-email}" class="about-register-link btn btn-primary">Click here to register</a>
+    </div>
+</section>
+	
+	
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normaluser/baseuser::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Home page</title>
+</head>
+
+<body>
+	<section><!-- 
+	
+		 <div th:if="${session.message}" th:classappend="${'alert '+session.message.type}" class="alert text-center mr-3 ml-3 " role="alert">
+			<span th:text="${session.message.content}"></span>
+		
+			removing session
+			<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+		</div>  -->
+
+		<div class="card mr-3 ml-3">
+			<div class="card-body">
+				<h1 class="text-center">Add New Contact</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+
+							<form action="#" th:object="${contact}" enctype="multipart/form-data" method="post"
+								th:action="@{'/user/' + ${user.userId} + '/processupdate-con/' + ${contact.cId}}" class="mt-2">
+
+
+								<!-- Name -->
+								<div class="input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+
+											<i class="fas fa-user"></i>
+										</span>
+									</div>
+									<input type="text" 
+									       name="name"
+									       th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
+									       class="form-control" 
+									       id="name"
+										   placeholder="Enter name here" 
+										   th:value="${contact.name}"
+										   required />
+										   
+								    <!-- Hibernate Validation for name field -->
+							        <div class="invalid-feedback" 
+							        th:each="error : ${#fields.errors('name')}" th:utext="${error}">
+                                    </div>
+                                    
+								</div>
+
+								<!-- Nick name -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+
+											<i class="fas fa-person"></i>
+										</span>
+									</div>
+									<input type="text"
+									       name="Nickname"
+									       th:classappend="${#fields.hasErrors('Nickname') ? 'is-invalid':''}" 
+									       class="form-control" 
+									       id="Nickname"
+										   placeholder="Enter  Nick name " 
+										   th:value="${contact.Nickname}"
+										   required />
+										   
+								    <!-- Hibernate Validation for name field -->
+							        <div class="invalid-feedback" 
+							        th:each="error : ${#fields.errors('Nickname')}" th:utext="${error}">
+                                    </div>
+								</div>
+
+								<!-- Phone -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+											<i class="fas fa-phone"></i>
+										</span>
+									</div>
+									<input type="tel"
+									       name="phone"
+									       th:classappend="${#fields.hasErrors('phone') ? 'is-invalid':''}" 
+									       class="form-control" 
+									       id="phone"
+										   placeholder="Enter phone number" 
+										   th:value="${contact.phone}"
+										   required />
+										
+									<!-- Hibernate Validation for name field -->
+							        <div class="invalid-feedback" 
+							        th:each="error : ${#fields.errors('phone')}" th:utext="${error}">
+                                    </div>
+								</div>
+
+								<!-- Email -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+											<i class="fas fa-envelope"></i>
+										</span>
+									</div>
+									<input type="email" 
+									       name="email"
+									       th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}"
+									       class="form-control" 
+									       id="email"
+										   placeholder="Enter email address" 
+										   th:value="${contact.email}"
+										   required />
+										   
+								    <!-- Hibernate Validation for name field -->
+							        <div class="invalid-feedback" 
+							        th:each="error : ${#fields.errors('email')}" th:utext="${error}">
+                                    </div>
+								</div>
+
+
+								<!-- Work -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text">
+											<i class="fas fa-briefcase"></i>
+										</span>
+									</div>
+									<input type="text" 
+									       class="form-control" 
+									       id="work" 
+									       name="work"
+									       th:value="${contact.work}"
+										placeholder="Enter work details" />
+								</div>
+
+								<!-- About/Description -->
+								<div class="form-group mt-3">
+									<textarea id="mytextarea"
+									          th:classappend="${#fields.hasErrors('about') ? 'is-invalid':''}"
+									          class="form-control" 
+									          name="about"
+									          th:text="${contact.about}"
+										      placeholder="Enter contact description" 
+										      rows="6">
+									</textarea>
+									
+									<!-- Hibernate Validation for name field -->
+							        <div class="invalid-feedback" 
+							        th:each="error : ${#fields.errors('about')}" th:utext="${error}">
+                                    </div>
+								</div>
+								
+								<!-- showing contact image -->
+								<div class="container">
+									
+									<img style="width: 50px; height: 50px;" class="img-fluid profile_pic" src="" th:src="@{'/img/' + ${profilepic}}" alt="" />
+									
+								</div>
+
+								<!-- Image -->
+								<div class="custom-file">
+									<input type="file" id="image" name="prifilepic">
+								</div>
+                                <p class="text-secondary">Choose existing/new pic</p>
+								<div class="container text-center">
+									<!-- Submit Button -->
+									<button type="submit" class="btn btn-primary mt-3">Save Contact</button>
+
+									<!-- Reset Button -->
+									<button  type="reset" class="btn btn-secondary mt-3 ml-2">Reset</button>
+
+								</div>
+
+
+							</form>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+         <!-- Adding tinymce texteditor -->
+	 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+     
+      <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+     </script>
+     
+	</div>
+		
+     
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normaluser/baseuser::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Dashboard page</title>
+
+</head>
+
+<body>
+	<section>
+       
+		<div class="container mt-3">
+			<div class="card">
+				<div class="card-body">
+					<!-- Entire form of updating password -->
+				<form action="#" th:action="@{'/user/' + ${user.userId} + '/processnewpassword'}" method="post">
+				 <h1 class="text-center mb-4">Your Settings</h1>
+
+					<!-- Old Password -->
+					<h4 class="ml-2">Change your Password</h4>
+					<div class="form-group mb-4">
+						<input type="password" 
+						       id="form2Example27" 
+						       name="oldPassword" 
+						       placeholder="Enter  old password"
+							   class="form-control form-control-lg" 
+							   required />
+					</div>
+					
+					<!--New Password -->
+					<div class="form-group mb-4">
+						<input type="text" 
+						       id="form2Example27" 
+						       name="newPassword" 
+						       placeholder="Enter new password"
+							   class="form-control form-control-lg" 
+							   required />
+					</div>
+
+                  <!-- Reset and Submit Buttons -->
+                  <div class="form-group text-center">
+                       <button type="submit" class="btn btn-primary">Submit</button>
+                       <button type="reset" class="btn btn-secondary">Reset</button>
+                  </div>
+                  
+                </form>
+                
+                <!-- Link to update user details outside the form -->
+              <form th:action="@{'/user/' + ${user.userId} + '/updateuser/settings'}" method="post">
+                      <button type="submit" class="btn btn-info">
+                        <i class="fa-solid fa-pencil"></i> Click here to update your details
+                      </button>
+              </form>
+
+
+			</div>
+		</div>
+	</div>
+
+      
+       
+	</section>
+</body>
+
+</html>

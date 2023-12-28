@@ -26,7 +26,7 @@ public class SmsVerification {
 
 			//twilio config
 			String twilio_sid = "AC11637736e24dca69c3ed59e6c5654fb5";
-			String twilio_auth_token = "af6dc99a6606a36bba2b43e4ef756c55";
+			String twilio_auth_token = "9b35fb6e98e32b4cf8e6b3d1f0a7cb26";
 			Twilio.init(twilio_sid, twilio_auth_token);
 
 

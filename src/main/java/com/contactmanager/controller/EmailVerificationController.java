@@ -54,9 +54,16 @@ public class EmailVerificationController {
 	}
 	
 	@PostMapping("/generate-otp")
-	public String verifyEmailWithOtp(@RequestParam("email") String email, Model model){
+	public String verifyEmailWithOtp(@RequestParam("email") String email, Model model, HttpSession session){
 		
 		Integer otp = this.verify.sendMail(email);
+		
+		if(otp == -1) {
+			model.addAttribute("title", "Checklater - User Contact Manager");
+        	session.setAttribute("message", 
+        			         new Message("Something went wrong, Please check after sometime !!", "alert-danger"));
+        	return "redirect:/check-email"; 
+		}
 		
 		model.addAttribute("otp", otp);
 		model.addAttribute("email", email);

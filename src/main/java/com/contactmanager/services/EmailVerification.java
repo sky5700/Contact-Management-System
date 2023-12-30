@@ -32,7 +32,14 @@ public class EmailVerification {
 		message.setText(body);
 		message.setSubject(subject);
 		
-		this.mailSender.send(message);//sending mail
+		try {
+			this.mailSender.send(message);//sending mail
+		} catch (Exception e) {
+			System.out.println("Failed to Send otp in User-Email");
+			e.printStackTrace();
+			otp = -1;
+		}
+		
 		
 		return otp;
 				

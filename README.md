@@ -54,7 +54,7 @@ A web app to manage your contacts efficiently. Create a secure account and save 
     ![17 Update_Password](https://github.com/sky5700/Contact-Management-System/assets/45534292/78c85ddf-2d18-4e7f-9836-63217a1e741b)
 
 
-##Author
+## Author
 
 * Akash Chakrabortty
 * https://github.com/sky5700 (Github Link)
